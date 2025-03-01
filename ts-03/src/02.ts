@@ -12,10 +12,22 @@ interface User {
     lastname: string
     email?: string
 }
-// Cambia todas las propiedades a opcionales
-const person: Partial<User> = {
-    name: 'fran'
+
+interface User1 {
+    password: string
+
 }
+// Cambia todas las propiedades a opcionales
+type CustomPerson2 = Pick<User, 'username' |'name'> | Pick<User1, 'password'> // 'username', 'name', 'password'
+
+type CustomPerson = Pick<User, 'username' | 'name'>
+
+const person: CustomPerson2 = {
+    name: 'fran',
+    username: 'francodileo',
+    password: 'lapassworddefran'
+}
+
 type UserOptions= Omit<User, 'username'>
 const person2: UserOptions = {
     birthday: '29/03/1994',

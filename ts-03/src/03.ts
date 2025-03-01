@@ -12,6 +12,9 @@
         const v = 1
         const b = 2
         const name="fran"
+
+        const someFn = () => {
+        }
         return {
             getName() {
                 return name
@@ -51,6 +54,7 @@ interface Person2Props {
     getWork: () => string
 }
 export class Person2 implements Person2Props  {
+    protected someProp: string = ""
     constructor(public props: PersonProps) {}
 
     public getName(): string {
@@ -77,7 +81,7 @@ export class Dev extends Person2 implements DevProps {
     constructor(public props: PersonProps) {
         super(props) // iniciar elconstructor de la clase padre (Person2)
     }
-
+    
     setLanguages(languages:string[]){
         this.languages=languages
     }
