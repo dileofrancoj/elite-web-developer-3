@@ -1,0 +1,1 @@
+export type MaybeId = "string" | number | undefined
