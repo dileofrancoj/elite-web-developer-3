@@ -1,6 +1,7 @@
 import { CharacterProps } from "../types/Character"
 import { Filter } from "../types/Filter"
 import { filters } from "../utils/filterCharacters"
+import { ButtonFactory } from "./Buttons/Button"
 
 // Recibe la lista de filtros
 interface Props {
@@ -11,9 +12,9 @@ export const FilterCharacters = ({changeFilterStrategy}: Props) => {
         <>
             {filters.map((filter) => {
                 return (
-                <button onClick={() => changeFilterStrategy(filter.strategy)}>
-                    {filter.name}
-                </button>
+                    <ButtonFactory buttonType="action" onClick={() => changeFilterStrategy(filter.strategy)}>
+                        {filter.name}
+                    </ButtonFactory>
                 )
             })}
         </>
