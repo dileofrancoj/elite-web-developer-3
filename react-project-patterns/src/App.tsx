@@ -10,14 +10,25 @@ import { NoFilter } from './utils/filterCharacters'
 function App() {
   const {loading, characters} = useCharacters()
   const [filterStrategy, setFilterStrategy] = React.useState<Filter<CharacterProps[]>>(new NoFilter())
+  const [hasError, setHasError] = React.useState(false)
+
   React.useEffect(() => {
   }, [filterStrategy])
   if(loading) return <span>'Cargando..'</span>
 
   const changeFilterStrategy = (strategy: Filter<CharacterProps[]>) => {
-    setFilterStrategy(strategy)
+    try {
+      throw new Error('filter strategy')
+      setFilterStrategy(strategy)
+    } catch (error) {
+      setHasError(true)
+      console.error(error)
+    }
   }
-  console.log('filterStrategy', filterStrategy)
+
+  if (hasError) {
+    throw new Error('An error occurred in changeFilterStrategy')
+  }
   const filteredCharacters = (): CharacterProps[] => {
     // filterStrategy es una instancia de la sub clase de filtrado (expuesta mediante el objeto filters)
     return filterStrategy.filter(characters) // devuelve un array de characters filtrados en base a filteredStrategy

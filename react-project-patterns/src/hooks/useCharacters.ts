@@ -17,14 +17,15 @@ export const useCharacters = (): useCharacterProps => {
                 const response = data as FetchedCharacterProps
                 setCharacters(response.results)
             } catch (error) {
-                console.error(error)
+                // console.error(error)
+                console.log(error)
+                // sentryHub.captureException(JSON.stringify(error))
             } finally {
                 setLoading(false)
             }
         }
         fetch()
     }, [])
-
-
+    
     return { loading, characters }
 }
